@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import pages.SignUpPage;
 import utils.ExcelDataConfig;
 
 public class SignUpTest {
@@ -21,6 +22,9 @@ public class SignUpTest {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get("https://www.phptravels.net/register");
+		
+		//SignUpPage signup = new SignUpPage();
+		//signup.
 		
 		driver.findElement(By.name("firstname")).sendKeys(fname);
 		driver.findElement(By.name("lastname")).sendKeys(lname);

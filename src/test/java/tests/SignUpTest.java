@@ -1,11 +1,16 @@
 package tests;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,7 +24,7 @@ public class SignUpTest {
 	WebDriver driver;
 	
 	@Test(dataProvider="phptravelsData")
-	public void signupTest(SignUpData data) throws InterruptedException {
+	public void signupTest(SignUpData data) throws Exception {
 		System.setProperty("webdriver.chrome.driver", "/home/ehab/eclipse-workspace/tdd-automation-framework/src/test/java/drivers/chromedriver");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -29,13 +34,23 @@ public class SignUpTest {
 		SignUpPage signup = new SignUpPage(driver);
 		
 		// Logic
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
 		
 		String fname = data.getFname();
 		fname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
 		signup.fillInFnameTextField(fname);
 		if(data.getFname().equalsIgnoreCase(data.getLname())) {
-			System.out.println("Fail -- fname: "+data.getFname()+", lname: "+data.getLname());
-			org.testng.Assert.fail("Fail: first name equals last name");
+			System.out.println("FAIL: fname: "+data.getFname()+", lname: "+data.getLname());
+			signup.fillInLnameTextField(data.getLname())
+				  .fillInPhoneTextField(data.getPhone())
+				  .fillInEmailTextField(data.getEmail())
+				  .fillInPasswdTextField(data.getPasswd())
+				  .fillInCPasswdTextField(data.getcPasswd())
+				  .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/first_name_equals_to_last_name__failure_"+dateFormat.format(date)+".png");
+			org.testng.Assert.fail("FAIL: FIRST NAME EQUALS LAST NAME");
 		}
 		else
 		{
@@ -54,19 +69,32 @@ public class SignUpTest {
 		}
 		else
 		{
-			System.out.println("Fail -- wrong phone format");
-			org.testng.Assert.fail("Fail: wrong phone format");
+			signup.fillInPhoneTextField(data.getPhone())
+			  	  .fillInEmailTextField(data.getEmail())
+			  	  .fillInPasswdTextField(data.getPasswd())
+			  	  .fillInCPasswdTextField(data.getcPasswd())
+			  	  .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/wrong_phone_failure_"+dateFormat.format(date)+".png");
+			System.out.println("FAIL: WRONG PHONE FORMAT");
+			org.testng.Assert.fail("FAIL: WRONG PHONE FORMAT");
 		}
 		String email = data.getEmail();
 		if(email.contains("@") && email.contains("."))
 		{
-			//TODO: should not exist before in the saved file
+			//TODO: should not exist in the saved file scrapped from http request
 			signup.fillInEmailTextField(data.getEmail());
 		}
 		else
 		{
-			System.out.println("Fail -- wrong email format");
-			org.testng.Assert.fail("Fail: wrong email format");
+			signup.fillInEmailTextField(data.getEmail())
+		  	      .fillInPasswdTextField(data.getPasswd())
+		  	      .fillInCPasswdTextField(data.getcPasswd())
+		  	      .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/wrong_email_format_failure_"+dateFormat.format(date)+".png");
+			System.out.println("FAIL: WRONG EMAIL FORMAT");
+			org.testng.Assert.fail("FAIL: WRONG EMAIL FORMAT");
 		}
 		String passwd = data.getPasswd();
 		boolean hasUppercase = !passwd.equals(passwd.toLowerCase());
@@ -78,8 +106,13 @@ public class SignUpTest {
 		}
 		else
 		{
-			System.out.println("Fail -- wrong password format");
-			org.testng.Assert.fail("Fail: wrong password format");
+			signup.fillInPasswdTextField(data.getPasswd())
+	  	          .fillInCPasswdTextField(data.getcPasswd())
+	  	          .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/wrong_password_format_failure_"+dateFormat.format(date)+".png");
+			System.out.println("FAIL: WRONG PASSWORD FORMAT");
+			org.testng.Assert.fail("FAIL: WRONG PASSWORD FORMAT");
 		}
 		if(data.getPasswd().equals(data.getcPasswd()))
 		{
@@ -89,21 +122,31 @@ public class SignUpTest {
 		}
 		else
 		{
-			System.out.println("Fail -- password does not match");
-			org.testng.Assert.fail("Fail: password does not match");
+			signup.fillInCPasswdTextField(data.getcPasswd())
+	              .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/password_does_not_match_failure_"+dateFormat.format(date)+".png");
+			System.out.println("FAIL: PASSWORD DOES NOT MATCH");
+			org.testng.Assert.fail("FAIL: PASSWORD DOES NOT MATCH");
 		}
 		signup.clickOnSignUpBtn();
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 		String validationLabel = signup.extractTextInDashboard();
-		String expectedLabel = "Hi, "+fname;
+		String last_name = data.getLname();
+		last_name = last_name.substring(0, 1).toUpperCase() + last_name.substring(1);
+		String expectedLabel = "Hi, "+fname+" "+last_name;
+		System.out.println(validationLabel);
+		System.out.println(expectedLabel);
 		if(validationLabel.equals(expectedLabel))
 		{
 			System.out.println("Validation Passed!");
 		}
 		else
 		{
-			System.out.println("Fail -- validation failed or couldn't find web element");
-			org.testng.Assert.fail("Fail: validation failed or couldn't find web element");
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/validation_failure_"+dateFormat.format(date)+".png");
+			System.out.println("FAIL: VALIDATION FAILED OR COULDN'T FIND WEB ELEMENT");
+			org.testng.Assert.fail("FAIL: VALIDATION FAILED");
 		}
 	}
 	
@@ -130,4 +173,20 @@ public class SignUpTest {
 		}
 		return data;
 	}
+	
+	public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+		//Convert web driver object to TakeScreenshot
+		TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+		//Call getScreenshotAs method to create image file
+		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+		//Move image file to new destination
+		File DestFile=new File(fileWithPath);
+		//Copy file at destination
+		FileUtils.copyFile(SrcFile, DestFile);
+		
+		String filePath = fileWithPath.toString();
+		String path = "<img src="\"file://"" alt="\"\"/" />";
+		Reporter.log(path);
+		
+		}
 }

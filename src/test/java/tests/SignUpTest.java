@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -49,7 +50,7 @@ public class SignUpTest {
 				  .fillInCPasswdTextField(data.getcPasswd())
 				  .clickOnSignUpBtn();
 			Thread.sleep(4000);
-			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/first_name_equals_to_last_name__failure_"+dateFormat.format(date)+".png");
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/first_name_equals_to_last_name_failure_"+dateFormat.format(date)+".png");
 			org.testng.Assert.fail("FAIL: FIRST NAME EQUALS LAST NAME");
 		}
 		else
@@ -183,10 +184,6 @@ public class SignUpTest {
 		File DestFile=new File(fileWithPath);
 		//Copy file at destination
 		FileUtils.copyFile(SrcFile, DestFile);
-		
-		String filePath = fileWithPath.toString();
-		String path = "<img src="\"file://"" alt="\"\"/" />";
-		Reporter.log(path);
-		
+		Reporter.log("<a href='"+ DestFile.getAbsolutePath() + "'> <img src='"+ DestFile.getAbsolutePath() + "' height='100' width='100'/> </a>");
 		}
 }

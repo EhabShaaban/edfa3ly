@@ -29,4 +29,5 @@ tdd automation framework structured in pom to resgiter users on website.
 <li>org.apache.commons.io.FileUtils download throw https://commons.apache.org/proper/commons-io/download_io.cgi</li> 
   <li>snapshoots will be generated under /test-output/snapshots</li>
   <li> testng report under /test-output/emailable-report.html with snaps of failures or defects attached inside</li>
+  <li> make sure to change cell type of new inserted data into excel sheet to 'text'</li>
  </ul>

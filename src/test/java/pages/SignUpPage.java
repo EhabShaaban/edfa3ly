@@ -21,6 +21,7 @@ public class SignUpPage {
 	By cpasswdTextField = By.name("confirmpassword");
 	By signupBtn = By.xpath("//*[@id=\"headersignupform\"]/div[8]/button");
 	By dashboardValidationLabel = By.xpath("/html/body/div[2]/div[1]/div[1]/div/div/div[1]/div/div[2]/h3");
+	By emailAlreadyExistsLabel = By.xpath("//*[@id=\"headersignupform\"]/div[2]/div");
 	
 	
 	public SignUpPage(WebDriver driver){
@@ -64,5 +65,9 @@ public class SignUpPage {
 	
 	public String extractTextInDashboard() {
 		return driver.findElement(dashboardValidationLabel).getText();
+	}
+	
+	public String extractDoubleEmailAlert() {
+		return driver.findElement(emailAlreadyExistsLabel).getText();
 	}
 }

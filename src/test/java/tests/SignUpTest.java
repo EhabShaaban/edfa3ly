@@ -35,13 +35,38 @@ public class SignUpTest {
 		SignUpPage signup = new SignUpPage(driver);
 		
 		// Logic
+		
 		Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
 		
 		String fname = data.getFname();
-		fname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
-		signup.fillInFnameTextField(fname);
-		if(data.getFname().equalsIgnoreCase(data.getLname())) {
+		//fname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
+		String firstCharFname = fname.substring(0, 1);
+		if(firstCharFname.equals(firstCharFname.toUpperCase())) {
+			System.out.println(firstCharFname);
+			signup.fillInFnameTextField(data.getFname());
+		}
+		else
+		{
+			signup.fillInFnameTextField(data.getFname())
+			      .fillInLnameTextField(data.getLname())
+			      .fillInPhoneTextField(data.getPhone())
+			      .fillInEmailTextField(data.getEmail())
+			      .fillInPasswdTextField(data.getPasswd())
+			      .fillInCPasswdTextField(data.getcPasswd())
+			      .clickOnSignUpBtn();
+		    Thread.sleep(4000);
+		    this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/first_name_did_not_start_with_uppercase_failure_"+dateFormat.format(date)+".png");
+		    org.testng.Assert.fail("FAIL: FIRST LETTER FOR FIRST NAME WAS NOT UPPERCASE");
+		}
+		String firstCharLname = data.getLname().substring(0, 1);
+		if(firstCharLname.equals(firstCharLname.toUpperCase()))
+		{
+			//String lname = data.getLname();
+			//lname = lname.substring(0, 1).toUpperCase() + lname.substring(1);
+			signup.fillInLnameTextField(data.getLname());
+		}
+		else if(data.getFname().equalsIgnoreCase(data.getLname())) {
 			System.out.println("FAIL: fname: "+data.getFname()+", lname: "+data.getLname());
 			signup.fillInLnameTextField(data.getLname())
 				  .fillInPhoneTextField(data.getPhone())
@@ -55,10 +80,17 @@ public class SignUpTest {
 		}
 		else
 		{
-			String lname = data.getLname();
-			lname = lname.substring(0, 1).toUpperCase() + lname.substring(1);
-			signup.fillInLnameTextField(lname);
+			signup.fillInLnameTextField(data.getLname())
+				  .fillInPhoneTextField(data.getPhone())
+				  .fillInEmailTextField(data.getEmail())
+				  .fillInPasswdTextField(data.getPasswd())
+				  .fillInCPasswdTextField(data.getcPasswd())
+				  .clickOnSignUpBtn();
+			Thread.sleep(4000);
+			this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/last_name_did_not_start_with_uppercase_failure_"+dateFormat.format(date)+".png");
+			org.testng.Assert.fail("FAIL: FIRST LETTER FOR LAST NAME WAS NOT UPPERCASE");
 		}
+		
 		String phone = data.getPhone();
 		int phone_len = phone.length();
 		System.out.println(phone_len);
@@ -80,6 +112,7 @@ public class SignUpTest {
 			System.out.println("FAIL: WRONG PHONE FORMAT");
 			org.testng.Assert.fail("FAIL: WRONG PHONE FORMAT");
 		}
+		
 		String email = data.getEmail();
 		if(email.contains("@") && email.contains("."))
 		{
@@ -97,6 +130,7 @@ public class SignUpTest {
 			System.out.println("FAIL: WRONG EMAIL FORMAT");
 			org.testng.Assert.fail("FAIL: WRONG EMAIL FORMAT");
 		}
+		
 		String passwd = data.getPasswd();
 		boolean hasUppercase = !passwd.equals(passwd.toLowerCase());
 		boolean hasLowercase = !passwd.equals(passwd.toUpperCase());

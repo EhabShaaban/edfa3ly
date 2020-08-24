@@ -8,6 +8,7 @@ tdd automation framework on pom model, maven & testng
 <li>tests: test class and classes here are the files to run to trigger the framework</li>
 <li>utils: helper code to slice strings and reading data with apache poi</li>
 </ul>
+
 #### tech & tools:
 <ul>
   <li>Java</li>
@@ -17,3 +18,6 @@ tdd automation framework on pom model, maven & testng
   <li>Selenium</li>
   <li>POM</l>
 </ul>
+
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)

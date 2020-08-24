@@ -1,5 +1,5 @@
 # tdd automation framework
-tdd automation framework on pom model, maven & testng
+tdd automation framework to resgiter users on website structured in pom. 
 #### packages:
 <ul>
 <li>data: data class for header variables in data excel sheets</li>

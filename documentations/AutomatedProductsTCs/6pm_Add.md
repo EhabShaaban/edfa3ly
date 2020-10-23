@@ -5,11 +5,11 @@
 - *Module: edfa3ly cart*
 - *Designed by: Ehab S. Feki*
 
-- Objective: User can add the given item to edfa3ly cart and specific data will be auto-populated
-- Pre-condition: User must have a valid URL that belongs to automated shop (6pm shop)
-
+#### Objective
+User can add the given item to edfa3ly cart and specific data will be auto-populated
+#### Pre-condition
+User must have a valid URL that belongs to automated shop (6pm shop)
 #### Test Script
-
 1. User navigate to: https://www.edfa3ly.com/cart
 > Expected result: Navigated to edfa3ly cart successfully
 2. Enter URL in <em>item URL</em> text box

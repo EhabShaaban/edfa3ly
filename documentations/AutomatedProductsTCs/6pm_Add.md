@@ -19,9 +19,9 @@ User must have a valid URL that belongs to automated shop (6pm shop)
 >> 4. Size will be populated with a retrieved list of size data and user will be able to select size from a drop-down list
 >> 5. Price will be populated according to size and color selected
 3. Click on *Notes and additional info* if needed to add the following data:
-1. Charges by seller
-2. Extra notes
-3. Choose suitable option from *If item is not available* list
+..1. Charges by seller
+..2. Extra notes
+..3. Choose suitable option from *If item is not available* list
 > Expected Result: Data entered successfully
-4. CLick on *Add item*
+4. Click on *Add item*
 > Expected Result: Item added successfully on cart with previously entered details 

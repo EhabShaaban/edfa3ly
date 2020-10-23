@@ -1,9 +1,9 @@
 ### Adding 6pm Product 
 ``
-TestCase ID: 1
-TestCase Priority: High
-Module: edfa3ly cart
-Designed by: Ehab S. Feki
+- TestCase ID: 1
+- TestCase Priority: High
+- Module: edfa3ly cart
+- Designed by: Ehab S. Feki
 ``
 
 #### Objective

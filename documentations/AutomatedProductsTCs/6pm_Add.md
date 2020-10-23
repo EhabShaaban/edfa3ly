@@ -12,9 +12,9 @@
 
 <ul>
 <li>User navigate to: https://www.edfa3ly.com/cart</li>
-<li>Expected result: Navigated to edfa3ly cart successfully</li>
+Expected result: Navigated to edfa3ly cart successfully
 <li>Enter URL in <em>item URL</em> text box</li>
-<li>Expected Result: The following data will be auto-populated:</li>
+Expected Result: The following data will be auto-populated:
 <li>Category field will be set to the corresponding category</li>
 <li>Name field will be set to the actual name of the product</li>
 <li>Color will be populated with a retrieved list of color data and user will be able to select color from a drop-down list</li> 

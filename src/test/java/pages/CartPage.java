@@ -11,16 +11,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 
 public class CartPage {
 	
 	public WebDriver driver;
 	
 	By urlTextBox = By.xpath("//input[@name='url']");
-	//By colorDropDownList = By.name("color");
-	By colorDropDownList = By.xpath("//*[@id=\"cart-basic-box\"]/div[3]/div[5]/div[2]/div/select");
-	By colorValueLabel = By.xpath("//*[contains(text(),'Black Iris')]");
+	By colorDropDownList = By.name("color");
+	//By colorDropDownList = By.xpath("//*[@id=\"cart-basic-box\"]/div[3]/div[5]/div[2]/div/select");
+	//By colorValueLabel = By.xpath("//*[contains(text(),'Black Iris')]");
+	By sizeDropDownList = By.name("size");
+	By addItemBtn = By.xpath("//input[@value='Add item']");
+	//By cartDetailsLabel = By.xpath("//*[contains(text(),'Cart Details')]");
+	By cartDetailsLabel = By.xpath("//*[contains(text(),'What are you waiting for?')]");
+	By errMsgLabel = By.xpath("//*[contains(text(),'we apologize')]");
 	
 	public CartPage(WebDriver driver){
 		this.driver = driver;
@@ -61,23 +65,23 @@ public class CartPage {
 		//colorDropDownListWebElement.click();
 		//WebElement colorValueWebElement = driver.findElement(colorValueLabel);
 		//colorValueWebElement.click();
-		
         return this;
 	}
-/**
- * 
- * 	public CartPage fillInCPasswdTextField(String text) {
-		driver.findElement(cpasswdTextField).sendKeys(text);
-		return this;
+	
+	public CartPage selectSize() {
+		Select color = new Select(driver.findElement(sizeDropDownList));
+        color.selectByVisibleText("9.5");
+        return this;
+	}
+
+	public CartPage clickOnAddItemBtn() {
+		WebElement addItemBtnWebElement = driver.findElement(addItemBtn);
+		addItemBtnWebElement.click();
+        return this;
+	}
+
+	public String getErrMsg() {
+		return driver.findElement(errMsgLabel).getText();
 	}
 	
-	public CartPage clickOnSignUpBtn() {
-		driver.findElement(signupBtn).click();
-		return this;
-	}
-	
-	public String extractTextInDashboard() {
-		return driver.findElement(dashboardValidationLabel).getText();
-	}
- */
 }

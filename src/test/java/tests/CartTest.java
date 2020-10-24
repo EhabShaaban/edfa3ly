@@ -1,20 +1,12 @@
 package tests;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,45 +14,52 @@ import org.testng.annotations.Test;
 import data.UrlData;
 import pages.CartPage;
 import utils.ExcelDataConfig;
-import utils.StringSlicing;
 
 public class CartTest {
 	WebDriver driver;
 	
 	@Test(dataProvider="UrlData")
-	public void test(UrlData data) throws InterruptedException{
+	public void test(UrlData data) throws Exception{
 		System.setProperty("webdriver.chrome.driver", "/home/ehab/tdd-automation-framework/src/test/java/drivers/chromedriver");
+		
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		driver.get("https://www.edfa3ly.com/cart");
 		
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
+		
 		CartPage cart = new CartPage(driver);
 		
 		if(data.getSelector().equalsIgnoreCase("1")) {
+			
 			// Add automated product
 			
 			cart.fillInUrlTextBox(data.getUrl());
-			cart.selectColor();
-			Thread.sleep(10000);
+			cart.selectColor()
+				.selectSize()
+				.clickOnAddItemBtn();
+			Thread.sleep(2000);
+		  	utils.Capture.takeSnapShot(driver, "/home/ehab/tdd-automation-framework/test-output/snapshots/Product_Added_"+dateFormat.format(date)+".png");
 		}
 		else {
+			
 			// Add prohibited product
+			
+			cart.fillInUrlTextBox(data.getUrl());
+			Thread.sleep(2000);
+			org.testng.Assert.assertEquals(cart.getErrMsg(), "we apologize, store is not available at this moment");
+			utils.Capture.takeSnapShot(driver, "/home/ehab/tdd-automation-framework/test-output/snapshots/Product_Prohibited_"+dateFormat.format(date)+".png");
+			
 		}
-				
-		/**
-		  	this.takeSnapShot(driver, "/home/ehab/eclipse-workspace/tdd-automation-framework/test-output/snapshots/wrong_password_format_failure_"+dateFormat.format(date)+".png");
-			org.testng.Assert.fail("FAIL: WRONG PASSWORD FORMAT");
-		**/
-		
-		
 	}
 	
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
-		System.out.println("Test ist fertig!");
+		System.out.println("Test ist Fertig");
 	}
 	
 	@DataProvider(name="UrlData")

@@ -7,5 +7,4 @@ public class StringSlicing {
 	    if (endIndex < 0) endIndex = s.length() + endIndex;
 	    return s.substring(startIndex, endIndex);
 	}
-
 }

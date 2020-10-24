@@ -1,0 +1,16 @@
+### Editing shein Product 
+```TestCase ID: 5```
+```TestCase Priority: High```
+```Module: edfa3ly cart```
+```Designed by: Ehab S. Feki```
+
+#### Objective
+User can edit the given product in edfa3ly cart
+#### Pre-condition
+Must execute TestCase ID: 4
+#### Test Script
+1. Select product on cart details and click on *Edit Item* option
+> Expected Result: Array of editable test boxes will be generated such as: Quantity, Color, and Size. Other data user will not be able to edit including price.
+2. Click on *Notes and additional info* if needed to edit other info
+3. Click *Save* button
+> Expected Result: New updates will be reflected on the new updated cart details

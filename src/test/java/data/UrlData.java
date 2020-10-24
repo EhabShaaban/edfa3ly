@@ -2,6 +2,7 @@ package data;
 
 public class UrlData {
 	String url;
+	String selector;
 
 	/**
 	 * @return the url
@@ -15,5 +16,19 @@ public class UrlData {
 	 */
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	/**
+	 * @return the selector
+	 */
+	public String getSelector() {
+		return selector;
+	}
+
+	/**
+	 * @param selector the selector to set
+	 */
+	public void setSelector(String selector) {
+		this.selector = selector;
 	}
 }

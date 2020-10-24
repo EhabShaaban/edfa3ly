@@ -15,7 +15,7 @@ User must have a valid URL that belongs to automated shop (Adidas shop)
 2. Enter URL in *item URL* text box
 3. Fill in the following data:
 	1. Select the corresponding category from *Category* field
-	2. Fill in prouct name in *Item Name* text box
+	2. Fill in product name in *Item Name* text box
 	3. Fill in product quantity in *Quantity* field (must not exceed 5)
 	4. Fill in product price in *Unit Price* text box
 	5. Fill in product color in *Color* text box
@@ -28,4 +28,4 @@ User must have a valid URL that belongs to automated shop (Adidas shop)
 > Expected Result: Data entered successfully
 5. Click on *Add item*
 > Expected Result: Item added successfully on cart with previously entered details.
-> Total receipt price will be populated besides cart icon on nav bar
+> Total receipt price will be populated besides cart icon on navbar

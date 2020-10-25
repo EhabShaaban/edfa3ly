@@ -18,3 +18,5 @@ When adding products error message are descriptive but not user friendly instead
 3. Select any color and size
 4. Enter *Quantity* more than 5
 > The following JSON will appear: {"quantity":["Quantity should be 5 piece or less"]}
+
+> refer to: Cart error message not user friendly.png

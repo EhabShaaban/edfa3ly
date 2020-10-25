@@ -9,8 +9,8 @@
 ```Environment: Linux/Chrome```
 
 #### Description
-Cart crash on adding product quantity more than 5 while clicking *Add item* button
-> Quantity valid though it can not be added
+Cart crash on adding product quantity more than 5 while clicking *Add item* button, quantity value gets reset to valid value but user can not add item
+
 
 #### Steps To Reproduce
 1. Navigate to: https://www.edfa3ly.com/cart
@@ -23,3 +23,5 @@ Cart crash on adding product quantity more than 5 while clicking *Add item* butt
 6. Click *Add item*
 >Expected Result: On clicking product should be added to cart list
 >Actual Result: User is not able to add new product
+
+> refer to: User can not add prouct.gif

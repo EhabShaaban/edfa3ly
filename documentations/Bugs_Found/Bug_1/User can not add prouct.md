@@ -22,4 +22,4 @@ Cart crash on adding product quantity more than 5 while clicking *Add item* butt
 5. Value gets reset below 5
 6. Click *Add item*
 >Expected Result: On clicking product should be added to cart list
->Actual Result: User is not able to add product
+>Actual Result: User is not able to add new product

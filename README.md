@@ -30,7 +30,7 @@ This test suite and test script are designed to test against edfa3ly cart featur
 + Make sure you have Java installed
 > If not please refer to: https://www.java.com/en/download/manual.jsp
 + Let all the dependencies to be downloaded locally when importing the project
-+ In ``CartTest.java`` change system paths on Line [23, 45, 54, 67] to match your machine
++ In ``CartTest.java`` change system paths on Line ``[23, 45, 54, 67]`` to match your machine
 + Download ``org.apache.commons.io.FileUtils`` throw https://commons.apache.org/proper/commons-io/download_io.cgi
 + Screenshots of test will be generated under ``/test-output/snapshots``
 + TestNG report under /test-output/emailable-report.html with snaps of failures or defects attached inside

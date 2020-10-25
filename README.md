@@ -5,7 +5,7 @@
 This test suite and test script are designed to test against edfa3ly cart feature on edfa3ly.com
 > All test and bugs found under *documentations* folder
 
-![Alt Text](https://drive.google.com/file/d/1mEGo6_F7XPDORzIsFIMBgq_bVMFesKju/view?usp=sharing)
+![Alt Text](https://drive.google.com/uc?export=view&id=1mEGo6_F7XPDORzIsFIMBgq_bVMFesKju)
 
 #### Packages
 

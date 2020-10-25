@@ -11,7 +11,7 @@ This test suite and test script are designed to test against edfa3ly cart featur
 
 + data: data class for variables in data excel sheets
 + drivers: where chrome driver lives
-+ pages: page class for pages under test. This is where web elements and it's methods live
++ pages: page class for pages under test. This is where web elements and their methods live
 + tests: test classes here are the files to run to trigger the framework
 + utils: helper code to slice strings and read data with apache poi
 
@@ -30,7 +30,7 @@ This test suite and test script are designed to test against edfa3ly cart featur
 + Make sure you have Java installed
 > If not please refer to: https://www.java.com/en/download/manual.jsp
 + Let all the dependencies to be downloaded locally when importing the project
-+ In ``CartTest.java`` change system pathes on Line [23, 45, 54, 67] to match your machine
++ In ``CartTest.java`` change system paths on Line [23, 45, 54, 67] to match your machine
 + Download ``org.apache.commons.io.FileUtils`` throw https://commons.apache.org/proper/commons-io/download_io.cgi
 + Screenshots of test will be generated under ``/test-output/snapshots``
-+ testng report under /test-output/emailable-report.html with snaps of failures or defects attached inside
++ TestNG report under /test-output/emailable-report.html with snaps of failures or defects attached inside
